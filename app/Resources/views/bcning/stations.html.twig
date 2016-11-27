@@ -1,0 +1,35 @@
+
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">List of stations</div>
+
+    <!-- Table -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Address</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Slots</th>
+                <th>Bikes</th>
+                <th>Status</th>
+                <th>nearbyStations</th>
+            </tr>
+        </thead>
+            <tbody>
+            {% for  station in stations %}
+                <tr>
+                    <td>{{ station.id  }}</td>
+                    <td>{{ station.streetName }}</td>
+                    <td>{{ station.latitude }}</td>
+                    <td>{{ station.longitude }}</td>
+                    <td>{{ station.slots }}</td>
+                    <td>{{ station.bikes }}</td>
+                    <td>{{ station.status }}</td>
+                    <td>{{ station.nearbyStations }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+    </table>
+</div>
