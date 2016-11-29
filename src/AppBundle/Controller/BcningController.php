@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class BcningController extends Controller
 {
+
     /**
      * @Route("/bcning", name="bcning")
      */
@@ -20,14 +21,6 @@ class BcningController extends Controller
         return $this->render('bcning/index.html.twig', $data);
    }
 
-//    /**
-//     * @Route("/stations", name="stations")
-//     */
-//    public function showStationsAction(Request $request)
-//    {
-//
-//        return $this->render('bcning/stations.html.twig');
-//    }
 
     /**
      * @Route("station/{stationId}", name="station")
@@ -36,19 +29,10 @@ class BcningController extends Controller
 
     public function jsonStationAction(Request $request, $stationId)
     {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'http://wservice.viabicing.cat/v2/stations');
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json')); // Assuming you're requesting JSON
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-        $api_response = curl_exec($ch);
-        $data = json_decode($api_response, true);
-        $station = $data['stations'][$stationId-1];
+        $station = $this->get('bicing_api')->getStation($stationId);
         $response = new JsonResponse();
         $response->setData($station);
         return $response;
-//        return $this->render('bcning/map.html.twig', $station);
-
     }
 
 

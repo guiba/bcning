@@ -31,6 +31,14 @@ class BicingApi
 
     public function getStation($stationId)
     {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'http://wservice.viabicing.cat/v2/stations');
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json')); // Assuming you're requesting JSON
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
+        $api_response = curl_exec($ch);
+        $data = json_decode($api_response, true);
+        $station = $data['stations'][$stationId-1];
+        return $station;
     }
 }
