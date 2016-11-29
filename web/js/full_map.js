@@ -4,16 +4,15 @@
 // Listen for the jQuery ready event on the document
 $(function() {
     console.log("ready!");
-
-
     //create map
     mapboxgl.accessToken = 'pk.eyJ1IjoidXRvIiwiYSI6InJDVTVQRFUifQ.v5auic0zHWGJSY2e_2TAGg';
     var map = new mapboxgl.Map({
         container: 'map', // container id
         style: 'mapbox://styles/mapbox/streets-v9', //stylesheet location
         center: [2.17076, 41.39515 ], // starting position
-        zoom: 12 // starting zoom
+        zoom: 13 // starting zoom
     });
+    map.addControl(new mapboxgl.GeolocateControl());
 
     //get json
     $.getJSON( "/stations", function( data ) {
