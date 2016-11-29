@@ -23,7 +23,30 @@ class BcningController extends Controller
 
 
     /**
-     * @Route("station/{stationId}", name="station")
+     * @Route("/map", name="full_map")
+     */
+
+    public function showFullMapAction(Request $request)
+    {
+        $data = $this->get('bicing_api')->getStations();
+        return $this->render('bcning/full_map.html.twig');
+    }
+
+
+    /**
+     * @Route("/map/{stationId}", name="map")
+     */
+
+    public function showMapAction(Request $request, $stationId)
+    {
+        return $this->render('bcning/map.html.twig');
+    }
+
+
+
+    // api calls
+    /**
+     * @Route("/station/{stationId}", name="station")
      * Returns json details of the station (stationId)
      */
 
@@ -35,13 +58,19 @@ class BcningController extends Controller
         return $response;
     }
 
-
     /**
-     * @Route("map/{stationId}", name="map")
+     * @Route("/stations", name="stations")
+     * Returns json details of all stations
      */
 
-    public function showMapAction(Request $request, $stationId)
+    public function jsonStationsAction(Request $request)
     {
-        return $this->render('bcning/map.html.twig');
+        $station = $this->get('bicing_api')->getStations();
+        $response = new JsonResponse();
+        $response->setData($station);
+        return $response;
     }
 }
+
+
+
