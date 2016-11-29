@@ -8,6 +8,7 @@
             <!-- Latest compiled and minified CSS -->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
             <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -16,25 +17,19 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Bcning</a>
+                <a class="navbar-brand" href="/bcning">Bcning</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+
+                    {% block navbar %}{% endblock %}
+
             </div><!--/.nav-collapse -->
         </div>
     </nav>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-6 col-md-4">
-                {% block body %}
-                    {% include ':bcning:stations.html.twig' %}
-                {% endblock %}
-            </div>
-        </div>
 
-    </div>
+                {% block body %}{% endblock %}
+
 
         {% block javascripts %}{% endblock %}
     </body>

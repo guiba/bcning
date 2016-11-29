@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Map{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.28.0/mapbox-gl.css' rel='stylesheet' />
+{% endblock %}
+{% block navbar %}
+
+
+{% endblock %}
+
+{% block body %}
+    <div id='map'></div>
+
+{% endblock %}
+
+
+
+{% block javascripts %}
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.28.0/mapbox-gl.js'></script>
+    <script src="{{ asset('js/map.js') }}"
+{% endblock %}

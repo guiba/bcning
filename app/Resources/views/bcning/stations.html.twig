@@ -1,8 +1,7 @@
 
 <div class="panel panel-default">
-    <!-- Default panel contents -->
-    <div class="panel-heading">List of stations</div>
-
+<!-- Default panel contents -->
+<div class="panel-heading">List of stations</div>
     <!-- Table -->
     <table class="table">
         <thead>
@@ -21,7 +20,7 @@
             {% for  station in stations %}
                 <tr>
                     <td>{{ station.id  }}</td>
-                    <td>{{ station.streetName }}</td>
+                    <td><a id="{{ station.id }}" href="map/{{ station.id }}">{{ station.streetName }}</a></td>
                     <td>{{ station.latitude }}</td>
                     <td>{{ station.longitude }}</td>
                     <td>{{ station.slots }}</td>
