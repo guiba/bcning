@@ -8,10 +8,12 @@ body {
 #map { position:absolute; top:0; bottom:0; width:100%; }
 
 .mapboxgl-marker{
-    width: 1%;
-    height: 1%;
+    background-image: url("/img/logo_bbicing_orig.svg");
+    background-size: cover;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    background-color: red;
+    cursor: pointer;
 }
 
 
