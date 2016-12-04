@@ -13,12 +13,24 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        main:
+        secured_area:
             anonymous: ~
             # activate different ways to authenticate
+            oauth:
+              resource_owners:
+                my_github: "/login/check-github"
+              login_path: /login
+              use_forward: false
+              failure_path: /login
 
-            # http_basic: ~
+              oauth_user_provider:
+                service: hwi_oauth.user.provider
+
+            #http_basic: ~
             # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
 
             # form_login: ~
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+    access_control:
+      #require ROLE_ADMIN for /admin*
+      - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
