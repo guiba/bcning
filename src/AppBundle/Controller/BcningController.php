@@ -65,9 +65,9 @@ class BcningController extends Controller
 
     public function jsonStationsAction(Request $request)
     {
-        $station = $this->get('bicing_api')->getStations();
+        $stations = $this->get('bicing_api')->getStations();
         $response = new JsonResponse();
-        $response->setData($station);
+        $response->setData($stations);
         return $response;
     }
 }

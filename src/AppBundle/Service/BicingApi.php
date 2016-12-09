@@ -18,23 +18,45 @@ class BicingApi
 
     private function geoJsonify($data)
     {
-        $geoJson = ['type' => 'FeatureCollection',
-            'features' => [
-                ['type' => 'Feature',
+        //array with features
+        $features = [];
+        foreach ($data['stations'] as $index=>$station)
+        {
+                $feature = ['type' => 'Feature',
                     'properties' => [
-                        'bikes' => $data['bikes'],
-                        'slots' => $data['slots'],
+                        'bikes' => $station['bikes'],
+                        'slots' => $station['slots'],
                     ],
                     'geometry' => [
                         'type' => 'Point',
                         'coordinates' => [
-                            $data['latitude'],
-                            $data['longitude']
+                            $station['latitude'],
+                            $station['longitude']
                         ],
                     ],
+                ];
+                $features[] = $feature;
+        }
 
-                ],
-            ]];
+        $geoJson = ['type' => 'FeatureCollection',
+            'features' => $features];
+//        $geoJson = ['type' => 'FeatureCollection',
+//            'features' => [
+//                ['type' => 'Feature',
+//                    'properties' => [
+//                        'bikes' => $data['bikes'],
+//                        'slots' => $data['slots'],
+//                    ],
+//                    'geometry' => [
+//                        'type' => 'Point',
+//                        'coordinates' => [
+//                            $data['latitude'],
+//                            $data['longitude']
+//                        ],
+//                    ],
+//
+//                ],
+//            ]];
         return $geoJson;
     }
 
@@ -44,17 +66,17 @@ class BicingApi
 
 // If using JSON...
         $data = json_decode($response, true);
-        $data['tot_stations'] = 0;
-        $data['tot_slots'] = 0;
-        $data['tot_bikes'] = 0;
-//  A bit of stats
-        foreach ($data['stations'] as $station) {
-            $data['tot_stations'] += 1;
-            $data['tot_slots'] += $station['slots'];
-            $data['tot_bikes'] += $station['bikes'];
-
-        }
-        return $data;
+//        $data['tot_stations'] = 0;
+//        $data['tot_slots'] = 0;
+//        $data['tot_bikes'] = 0;
+////  A bit of stats
+//        foreach ($data['stations'] as $station) {
+//            $data['tot_stations'] += 1;
+//            $data['tot_slots'] += $station['slots'];
+//            $data['tot_bikes'] += $station['bikes'];
+//
+//        }
+        return $this->geoJsonify($data);
     }
 
     public function getStation($stationId)
