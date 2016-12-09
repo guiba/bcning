@@ -26,12 +26,24 @@ $(function() {
                 var address = station['streetName'] + ' ' + station['streetNumber'];
 
 
-                //add marker
+                //create marker
                 var el = document.createElement('div');
                 el.id = 'marker' + id;
 
+                //create popup
+                var popup = new mapboxgl.Popup({closeButton: false});
+
+                var popupHtml = '<ul class="list-group"> ' +
+                                    '<li class="list-group-item">' + address + '</li>' +
+                                    '<li class="list-group-item"><span class="badge">' + bikes + '</span>Bikes</li> '+
+                                    '<li class="list-group-item"><span class="badge">' + slots + '</span>Slots</li>' +
+                                '</ul>'
+                popup.setHTML(popupHtml);
+
+
                 new mapboxgl.Marker(el)
                     .setLngLat([lng, lat])
+                    .setPopup(popup)
                     .addTo(map);
 
             });

@@ -12,24 +12,24 @@ class BcningController extends Controller
 {
 
     /**
-     * @Route("/bcning", name="bcning")
+     * @Route("/stations/list", name="stations_list")
      */
 
     public function indexAction(Request $request)
     {
         $data = $this->get('bicing_api')->getStations();
-        return $this->render('bcning/index.html.twig', $data);
+        return $this->render('bcning/sations_list.html.twig', $data);
    }
 
 
     /**
-     * @Route("/map", name="full_map")
+     * @Route("/", name="full_map")
      */
 
     public function showFullMapAction(Request $request)
     {
         $data = $this->get('bicing_api')->getStations();
-        return $this->render('bcning/full_map.html.twig');
+        return $this->render('bcning/full_map.html.twig', $data);
     }
 
 
