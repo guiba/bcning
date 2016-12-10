@@ -14,13 +14,11 @@
         console.log("ready!");
         //get current url
         var currentUrl = $(location).attr('pathname');
-        console.log(currentUrl);
         var stationId = currentUrl.substring(currentUrl.lastIndexOf('/') + 1);
 
 
 
         //get Geojson
-        // var stationId = 1;
         $.getJSON( "/station/"+stationId, function( data ) {
             //create map
             mapboxgl.accessToken = 'pk.eyJ1IjoidXRvIiwiYSI6InJDVTVQRFUifQ.v5auic0zHWGJSY2e_2TAGg';
@@ -46,7 +44,8 @@
                     type: 'symbol',
                     source: 'station',
                     layout: {
-                        'icon-image': 'restaurant-15',
+                        'icon-image': 'bicycle-share-11',
+                        'text-field': 'testo',
                         'icon-allow-overlap': true
                     }
                 });
@@ -95,42 +94,3 @@
     });
 
 }(window.jQuery, window, document));
-
-
-
-
-
-
-// //Generate Geojson form reply
-// map.on('load', function () {
-//     map.addSource("points", {
-//         "type": "geojson",
-//         "data": {
-//             "type": "FeatureCollection",
-//             "features": [{
-//                 "type": "Feature",
-//                 "geometry": {
-//                     "type": "Point",
-//                     "coordinates": [lng, lat]
-//                 },
-//                 "properties": {
-//                     "title": "Station: " + data['id'],
-//                     "icon": "bicycle"
-//                 }
-//             }]
-//         }
-//     });
-//
-//     map.addLayer({
-//         "id": "points",
-//         "type": "symbol",
-//         "source": "points",
-//         "layout": {
-//             "icon-image": "{icon}-15",
-//             "text-field": "{title}",
-//             "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-//             "text-offset": [0, 0.6],
-//             "text-anchor": "top"
-//         }
-//     });
-// });

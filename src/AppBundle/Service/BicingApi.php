@@ -2,6 +2,7 @@
 
 namespace AppBundle\Service;
 
+
 class BicingApi
 {
 
@@ -18,10 +19,7 @@ class BicingApi
 
     private function geoJsonify($data)
     {
-        // init vars for stats
-        $tot_stations = 0;
-        $tot_slots = 0;
-        $tot_bikes= 0;
+
         //array with features
         $features = [];
         foreach ($data['stations'] as $index=>$station)
@@ -37,42 +35,25 @@ class BicingApi
                     'geometry' => [
                         'type' => 'Point',
                         'coordinates' => [
-                            $station['latitude'],
-                            $station['longitude']
+                            $station['longitude'],
+                            $station['latitude']
                         ],
                     ],
                 ];
                 $features[] = $feature;
-            $tot_stations += 1;
-            $tot_slots += $station['slots'];
-            $tot_bikes += $station['bikes'];
         }
 
         $geoJson = ['type' => 'FeatureCollection',
                     'features' => $features,
-                    'tot_stations' => $tot_stations,
-                    'tot_slots' => $tot_slots,
-                    'tot_bikes' => $tot_bikes,
-                    'updateTime' => $data['updateTime']];
-//        $geoJson = ['type' => 'FeatureCollection',
-//            'features' => [
-//                ['type' => 'Feature',
-//                    'properties' => [
-//                        'bikes' => $data['bikes'],
-//                        'slots' => $data['slots'],
-//                    ],
-//                    'geometry' => [
-//                        'type' => 'Point',
-//                        'coordinates' => [
-//                            $data['latitude'],
-//                            $data['longitude']
-//                        ],
-//                    ],
-//
-//                ],
-//            ]];
+                    ];
+
         return $geoJson;
     }
+
+    /**
+     * @return array
+     * Returns stations data in geojson format
+     */
 
     public function getStations()
     {
@@ -90,14 +71,29 @@ class BicingApi
             $data['tot_bikes'] += $station['bikes'];
 
         }
-        return $this->geoJsonify($data);
+
+        $geoJsonData  = $this->geoJsonify($data);
+        //add stats to the data
+        $geoJsonData['tot_stations'] = $data['tot_stations'];
+        $geoJsonData['tot_slots'] = $data['tot_slots'];
+        $geoJsonData['tot_bikes'] = $data['tot_bikes'];
+        $geoJsonData['updateTime'] = (new \DateTime())->setTimestamp($data['updateTime'])->format('d-m-Y H:i:s');//format timestamp
+        return $geoJsonData;
     }
 
+
+    /**
+     * @param $stationId
+     * @return array
+     * Returns data for a single station in geojson format
+     */
     public function getStation($stationId)
     {
         $api_response = $this->fetchData();
         $data = json_decode($api_response, true);
-        $station = $data['stations'][$stationId - 1];
+        $station = ['stations' => [$data['stations'][$stationId - 1]]];
         return $this->geoJsonify($station);
+//        return $station;
     }
+
 }
