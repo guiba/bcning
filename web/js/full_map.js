@@ -36,49 +36,49 @@ $(function() {
             // console.log('data loaded');
 
             //add a layer to the map with styling rules to render the source
-            map.addLayer({
-                id: 'stations',
-                type: 'symbol',
-                source: 'stations',
-                layout: {
-                    'icon-image': 'bicycle-share-11',
-                    'icon-allow-overlap': true
-                }
-            });
+            // map.addLayer({
+            //     id: 'stations',
+            //     type: 'symbol',
+            //     source: 'stations',
+            //     layout: {
+            //         'icon-image': 'bicycle-share-11',
+            //         'icon-allow-overlap': true
+            //     }
+            // });
             // console.log('layer loaded');
 
         });
-        // $.each(data.features,  function( i, station){
-        //     console.log(station);
-        //         var id = station['properties']['id'];
-        //         var lat = station['geometry']['coordinates'][0];
-        //         var lng = station['geometry']['coordinates'][1];
-        //         var bikes = station['properties']['bikes'];
-        //         var slots = station['properties']['slots'];
-        //         var address = station['properties']['streetName'] + ' ' + station['properties']['streetNumber'];
-        //
-        //         // console.log('Address: ' + address);
-        //         //create marker
-        //         var el = document.createElement('div');
-        //         el.id = 'marker' + id;
-        //
-        //         //create popup
-        //         var popup = new mapboxgl.Popup({closeButton: false});
-        //
-        //         var popupHtml = '<ul class="list-group"> ' +
-        //                             '<li class="list-group-item">' + address + '</li>' +
-        //                             '<li class="list-group-item"><span class="badge">' + bikes + '</span>Bikes</li> '+
-        //                             '<li class="list-group-item"><span class="badge">' + slots + '</span>Slots</li>' +
-        //                         '</ul>'
-        //         popup.setHTML(popupHtml);
-        //
-        //
-        //         new mapboxgl.Marker(el)
-        //             .setLngLat([lng, lat])
-        //             .setPopup(popup)
-        //             .addTo(map);
-        //
-        //     });
+        $.each(data.features,  function( i, station){
+            console.log(station);
+                var id = station['properties']['id'];
+                var lat = station['geometry']['coordinates'][1];
+                var lng = station['geometry']['coordinates'][0];
+                var bikes = station['properties']['bikes'];
+                var slots = station['properties']['slots'];
+                var address = station['properties']['streetName'] + ' ' + station['properties']['streetNumber'];
+
+                // console.log('Address: ' + address);
+                //create marker
+                var el = document.createElement('div');
+                el.id = 'marker' + id;
+
+                //create popup
+                var popup = new mapboxgl.Popup({closeButton: false});
+
+                var popupHtml = '<ul class="list-group"> ' +
+                                    '<li class="list-group-item">' + address + '</li>' +
+                                    '<li class="list-group-item"><span class="badge">' + bikes + '</span>Bikes</li> '+
+                                    '<li class="list-group-item"><span class="badge">' + slots + '</span>Slots</li>' +
+                                '</ul>'
+                popup.setHTML(popupHtml);
+
+
+                new mapboxgl.Marker(el)
+                    .setLngLat([lng, lat])
+                    .setPopup(popup)
+                    .addTo(map);
+
+            });
     });
 });
 }(window.jQuery, window, document));

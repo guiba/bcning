@@ -45,7 +45,6 @@
                     source: 'station',
                     layout: {
                         'icon-image': 'bicycle-share-11',
-                        'text-field': 'testo',
                         'icon-allow-overlap': true
                     }
                 });
