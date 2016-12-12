@@ -6,6 +6,10 @@ namespace AppBundle\Service;
 class BicingApi
 {
 
+    /**
+     * @return json
+     *
+     */
     private function fetchData()
     {
         $ch = curl_init();
@@ -30,7 +34,10 @@ class BicingApi
                         'bikes' => $station['bikes'],
                         'slots' => $station['slots'],
                         'streetName' => $station['streetName'],
-                        'streetNumber' => $station['streetNumber']
+                        'streetNumber' => $station['streetNumber'],
+                        'type' => $station['type'],
+                        'status' => $station['status'],
+                        'nearbyStations' => $station['nearbyStations']
                     ],
                     'geometry' => [
                         'type' => 'Point',

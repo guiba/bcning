@@ -61,6 +61,7 @@ $(function() {
                 //create marker
                 var el = document.createElement('div');
                 el.id = 'marker' + id;
+                el.className = 'marker';
 
                 //create popup
                 var popup = new mapboxgl.Popup({closeButton: false});
@@ -73,7 +74,9 @@ $(function() {
                 popup.setHTML(popupHtml);
 
 
-                new mapboxgl.Marker(el)
+                new mapboxgl.Marker(el, {
+                    offset: [-25, -60]
+                })
                     .setLngLat([lng, lat])
                     .setPopup(popup)
                     .addTo(map);
