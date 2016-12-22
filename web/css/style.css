@@ -10,18 +10,10 @@ body {
 .mapboxgl-marker{
     background-image: url("/img/logo_bbicing_orig.svg");
     background-size: cover;
-    width: 20%;
-    height: 20%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
     cursor: pointer;
 }
-
-/*#marker{*/
-    /*background-image: url("/img/logo_bbicing_orig.svg");*/
-    /*background-size: cover;*/
-    /*width: 20%;*/
-    /*height: 20%;*/
-    /*cursor: pointer;*/
-    /*position: absolute;*/
-/*}*/
 
 

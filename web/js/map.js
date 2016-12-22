@@ -36,39 +36,6 @@
                 zoom: 16 // starting zoom
             });
 
-            // //Generate Geojson form reply
-            // map.on('load', function () {
-            //     map.addSource("points", {
-            //         "type": "geojson",
-            //         "data": {
-            //             "type": "FeatureCollection",
-            //             "features": [{
-            //                 "type": "Feature",
-            //                 "geometry": {
-            //                     "type": "Point",
-            //                     "coordinates": [lng, lat]
-            //                 },
-            //                 "properties": {
-            //                     "title": "Station: " + data['id'],
-            //                 }
-            //             }]
-            //         }
-            //     });
-            //
-            //     map.addLayer({
-            //         "id": "points",
-            //         "type": "symbol",
-            //         "source": "points",
-            //         "layout": {
-            //             "icon-image": "{icon}-15",
-            //             "text-field": "{title}",
-            //             "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-            //             "text-offset": [0, 0.6],
-            //             "text-anchor": "top"
-            //         }
-            //     });
-            // });
-
             //add marker
             var el = document.createElement('div');
             el.id = 'marker';
