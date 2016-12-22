@@ -1,19 +1,43 @@
 body {
     padding-top: 50px;
+    height:100%;
 }
-.starter-template {
-    padding: 40px 15px;
-    text-align: center;
-}
-#map { position:absolute; top:0; bottom:0; width:100%; }
 
-.mapboxgl-marker{
-    background-image: url("/img/logo_bbicing_orig.svg");
-    background-size: cover;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+#stations {
+    padding-right: 0;
+}
+
+.map-col {
+    height: 100%;
+    padding:0;
+}
+
+#map { position:absolute;
+        top:0;
+        bottom:0;
+        width: 100%;
+        height: 800px;
+        padding: 0;
+}
+
+.marker{
+    paddding: 0;
+    background-image: url("/img/logo_bbicing_marker.svg");
+    width: 30px;
+    height: 36px;
+    /*border-radius: 50%;*/
+    /*border: solid black 1px;*/
     cursor: pointer;
+    /*background-size: cover;*/
+    /*transform: translate(28px, 56px, 0);*/
 }
 
-
+/*.marker{*/
+    /*border: none;*/
+    /*cursor: pointer;*/
+    /*height: 56px;*/
+    /*width: 56px;*/
+    /*background-image: url("/img/logo_bbicing_orig.png");*/
+    /*background-color: rgba(0, 0, 0, 0);*/
+    /*transform: translate(28px, 56px, 0);*/
+/*}*/

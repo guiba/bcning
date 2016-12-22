@@ -7,13 +7,14 @@
 {% endblock %}
 
 {% block body %}
-    <div id='map'></div>
-
+    <div id="map-relative">
+        <div id='map'></div>
+    </div>
 {% endblock %}
 
 
 
 {% block javascripts %}
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.28.0/mapbox-gl.js'></script>
-    <script src="{{ asset('js/map.js') }}"
+    <script src="{{ asset('js/map.js') }}"></script>
 {% endblock %}

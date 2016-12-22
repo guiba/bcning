@@ -8,25 +8,25 @@
             <tr>
                 <th>Id</th>
                 <th>Address</th>
-                <th>Latitude</th>
-                <th>Longitude</th>
+                {#<th>Latitude</th>#}
+                {#<th>Longitude</th>#}
                 <th>Slots</th>
                 <th>Bikes</th>
-                <th>Status</th>
-                <th>nearbyStations</th>
+                {#<th>Status</th>#}
+                {#<th>nearbyStations</th>#}
             </tr>
         </thead>
             <tbody>
-            {% for  station in stations %}
+            {% for  station in features %}
                 <tr>
-                    <td>{{ station.id  }}</td>
-                    <td><a id="{{ station.id }}" href="map/{{ station.id }}">{{ station.streetName }} {{ station.streetNumber }}</a></td>
-                    <td>{{ station.latitude }}</td>
-                    <td>{{ station.longitude }}</td>
-                    <td>{{ station.slots }}</td>
-                    <td>{{ station.bikes }}</td>
-                    <td>{{ station.status }}</td>
-                    <td>{{ station.nearbyStations }}</td>
+                    <td>{{ station.properties.id  }}</td>
+                    <td><a id="{{ station.properties.id }}" href="/map/{{ station.properties.id }}">{{ station.properties.streetName }} {{ station.properties.streetNumber }}</a></td>
+                    {#<td>{{ station.latitude }}</td>#}
+                    {#<td>{{ station.longitude }}</td>#}
+                    <td>{{ station.properties.slots }}</td>
+                    <td>{{ station.properties.bikes }}</td>
+                    {#<td>{{ station.status }}</td>#}
+                    {#<td>{{ station.nearbyStations }}</td>#}
                 </tr>
             {% endfor %}
             </tbody>
