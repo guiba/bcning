@@ -75,7 +75,7 @@ $(function() {
 
 
                 new mapboxgl.Marker(el, {
-                    offset: [-25, -60]
+                    offset: [-15, -36]
                 })
                     .setLngLat([lng, lat])
                     .setPopup(popup)
