@@ -33,6 +33,10 @@ security:
                 default_target_path: bcning
             logout:   true
             anonymous: true
+            remember_me:
+              secret:  "%secret%"
+              lifetime: 604800
+              path: /
 
             # activate different ways to authenticate
 
@@ -47,4 +51,3 @@ security:
       - {path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
       - {path: ^/admin/, role: ROLE_ADMIN }
       - {path: ^/, role: ROLE_USER}
-
