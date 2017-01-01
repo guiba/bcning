@@ -3,6 +3,11 @@ body {
     height:100%;
 }
 
+.body-container{
+  padding: 40px 15px;
+  /*text-align: center;*/
+}
+
 #stations {
     padding-right: 0;
 }

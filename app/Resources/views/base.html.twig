@@ -21,13 +21,32 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse">
 
-                    {% block navbar %}{% endblock %}
+                    {% block navbar %}
+                    <div>
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <p class="navbar-text navbar-right">
+                            {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                            <a href="{{ path('fos_user_security_logout') }}" class="navbar-link">
+                                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                            </a>
+                        </p>
+                        {% else %}
+                        <p class="navbar-text navbar-right">
+                            <a href="{{ path('fos_user_registration_register') }}" class="navbar-link">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+                        </p>
+
+                        <p class="navbar-text navbar-right">
+                            <a href="{{ path('fos_user_security_login') }}" class="navbar-link">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                        </p>
+                        {% endif %}
+                    </div>
+                    {% endblock %}
 
             </div><!--/.nav-collapse -->
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container body-container">
                 {% block body %}{% endblock %}
     </div>
 
