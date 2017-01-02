@@ -14,7 +14,7 @@
     // Listen for the jQuery ready event on the document
 $(function() {
     console.log("ready!");
-    //create map
+  //  create map
     mapboxgl.accessToken = 'pk.eyJ1IjoidXRvIiwiYSI6InJDVTVQRFUifQ.v5auic0zHWGJSY2e_2TAGg';
     var map = new mapboxgl.Map({
         container: 'map', // container id
@@ -33,7 +33,7 @@ $(function() {
                 type: 'geojson',
                 data: data
             });
-            // console.log('data loaded');
+             console.log('data loaded');
 
             //add a layer to the map with styling rules to render the source
             // map.addLayer({
@@ -46,7 +46,6 @@ $(function() {
             //     }
             // });
             // console.log('layer loaded');
-
         });
         $.each(data.features,  function( i, station){
             console.log(station);
@@ -66,11 +65,15 @@ $(function() {
                 //create popup
                 var popup = new mapboxgl.Popup({closeButton: false});
 
-                var popupHtml = '<ul class="list-group"> ' +
-                                    '<li class="list-group-item">' + address + '</li>' +
-                                    '<li class="list-group-item"><span class="badge">' + bikes + '</span>Bikes</li> '+
-                                    '<li class="list-group-item"><span class="badge">' + slots + '</span>Slots</li>' +
-                                '</ul>'
+                var popupHtml = '<div class="panel panel-default">' +
+                                  '<div class="panel-heading">' +
+                                    address +
+                                  '</div>' +
+                                  '<ul class="list-group"> ' +
+                                      '<li class="list-group-item"><span class="badge">' + bikes + '</span>Bikes</li> '  +
+                                      '<li class="list-group-item"><span class="badge">' + slots + '</span>Slots</li>' +
+                                  '</ul>' +
+                                '</div>';
                 popup.setHTML(popupHtml);
 
 
