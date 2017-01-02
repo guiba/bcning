@@ -22,7 +22,14 @@ $(function() {
         center: [2.17076, 41.39515], // starting position
         zoom: 13 // starting zoom
     });
-    map.addControl(new mapboxgl.GeolocateControl());
+    var geolocator = new mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true
+      },
+      watchPosition: true
+    });
+
+    map.addControl(geolocator);
 
     //get json
     $.getJSON("/stations", function (data) {
