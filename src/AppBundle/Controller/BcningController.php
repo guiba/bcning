@@ -28,8 +28,8 @@ class BcningController extends Controller
 
     public function showFullMapAction(Request $request)
     {
-        $data = $this->get('bicing_api')->getStations();
-        return $this->render('bcning/full_map.html.twig', $data);
+        // $data = $this->get('bicing_api')->getStations();
+        return $this->render('bcning/full_map.html.twig');
     }
 
 
@@ -71,6 +71,3 @@ class BcningController extends Controller
         return $response;
     }
 }
-
-
-
